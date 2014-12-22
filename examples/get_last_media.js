@@ -8,6 +8,9 @@ var cam = new GoPro.Camera();
 cam.listMedia().then(function (result) {
 
     var lastDir = result.media[result.media.length-1];
+    if (!lastDir) {
+        return console.log("[Storage empty]");
+    }
     console.log("[last dir] = ", lastDir.d);
     var lastMedia = lastDir.fs[lastDir.fs.length-1];
     console.log("[last media] = ", lastMedia);
@@ -20,4 +23,4 @@ cam.listMedia().then(function (result) {
         .then(function (file) {console.log('[media downloaded]', file);})
         .catch(function (err) {console.log('[media download error]', err); });
 
-});
+})
